@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "HelloWorldScene.h"
+#include "TitleScene.h"
 
 USING_NS_CC;
 
@@ -7,7 +7,7 @@ AppDelegate::AppDelegate() {
 
 }
 
-AppDelegate::~AppDelegate() 
+AppDelegate::~AppDelegate()
 {
 }
 
@@ -31,14 +31,40 @@ bool AppDelegate::applicationDidFinishLaunching() {
         director->setOpenGLView(glview);
     }
 
+    glview->setDesignResolutionSize(1136.0f, 640.0f, ResolutionPolicy::SHOW_ALL);
+    /*
+    // Cocos2d-xでいい感じのDesignResolutionSizeを指定する
+    // http://kyokomi.hatenablog.com/entry/2014/06/22/180213
+    const float baseScale  = 1.00f;
+    const float baseWidth  = 1136.0f;
+    const float baseHeight = 640.0f;
+    const float baseScaleWidth  = baseWidth * baseScale;
+    const float baseScaleHeight = baseHeight * baseScale;
+
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    const int widthDiff = (int)visibleSize.width % (int)baseWidth;
+    const int heightDiff = (int)visibleSize.height % (int)baseHeight;
+
+    if (widthDiff == 0 && heightDiff == 0) {
+        // 縦横ともに480x320準拠ならそのまま
+        glview->setDesignResolutionSize(baseScaleWidth, baseScaleHeight, ResolutionPolicy::SHOW_ALL);
+    } else {
+        // 縦横が480x320に準拠しない場合、いい感じにする
+        float divX = visibleSize.width / baseWidth;
+        float divY = visibleSize.height / baseHeight;
+        glview->setDesignResolutionSize(baseScaleWidth + (widthDiff / divX), baseScaleHeight + (heightDiff / divY), ResolutionPolicy::SHOW_ALL);
+    }
+    // end.
+    */
+
     // turn on display FPS
-    director->setDisplayStats(true);
+    director->setDisplayStats(false);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
+    auto scene = TitleScene::createScene();
 
     // run
     director->runWithScene(scene);
