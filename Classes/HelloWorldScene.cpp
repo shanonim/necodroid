@@ -4,6 +4,7 @@
 #include "HelloWorldScene.h"
 #include "TitleScene.h"
 #include "SimpleAudioEngine.h"
+#include "NendIconModule.h"
 
 #define forceValue 2
 #define X_FORCE 350
@@ -529,11 +530,20 @@ void HelloWorld::gameOver()
     hiscoreResultLabel->setPosition(Vec2(WINSIZE.width / 2.0, WINSIZE.height - 180));
     hiscoreResultLabel->setColor(Color3B::WHITE);
     this->addChild(hiscoreResultLabel, 4);
+
+    // 広告表示
+    char apiKey[] = "efea88b2bab5987200ea3f621c3829cfcdb1d4fc";
+    char spotID[] = "348453";
+    NendIconModule::createNADIconLoader(apiKey, spotID);
+    NendIconModule::createNADIconViewBottom();
+    NendIconModule::load();
+    NendIconModule::showNADIconView();
 }
 
 void HelloWorld::retryButton(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType type)
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->playEffect("sounds/start01.mp3");
+    NendIconModule::hideNADIconView();
     auto scene = TitleScene::createScene();
     auto transition = TransitionFade::create(0.5f, scene);
     Director::getInstance()->replaceScene(transition);

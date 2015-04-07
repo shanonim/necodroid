@@ -15,6 +15,9 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/HelloWorldScene.cpp \
                    ../../Classes/TitleScene.cpp \
                    ../../Classes/TutorialScene.cpp \
+                   ../../Classes/NendIconModule.cpp \
+                   ../../Classes/NendInterstitialModule.cpp \
+                   ../../Classes/NendModule.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 
